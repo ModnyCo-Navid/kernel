@@ -191,6 +191,9 @@ rockchip_lvds_encoder_atomic_mode_set(struct drm_encoder *encoder,
 		lvds->format = LVDS_10BIT_MODE_FORMAT_2;
 		break;
 	case MEDIA_BUS_FMT_RGB666_1X7X3_SPWG:	/* vesa-18 */
+		lvds->format = LVDS_6BIT_MODE;
+		break;
+	case MEDIA_BUS_FMT_RGB666_1X18:
 		lvds->format = LVDS_8BIT_MODE_FORMAT_3;
 		break;
 	case MEDIA_BUS_FMT_RGB101010_1X7X5_SPWG: /* vesa-30 */
