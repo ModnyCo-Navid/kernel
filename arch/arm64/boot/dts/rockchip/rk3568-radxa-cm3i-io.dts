@@ -9,7 +9,7 @@
 #include "rk3568-radxa-cm3i.dtsi"
 
 / {
-	model = "Radxa CM3I IO Board";
+	model = "Radxa CM3I Test";
 	compatible = "radxa,cm3i-io", "radxa,cm3i", "rockchip,rk3568";
 
 	fan0: pwm-fan {
@@ -37,16 +37,16 @@
 		regulator-name = "vcc5v0_usb";
 	};
 
-	pcie30_3v3: pcie30-3v3 {
-		compatible = "regulator-fixed";
-		regulator-name = "pcie30_3v3";
-		enable-active-high;
-		regulator-always-on;
-		regulator-boot-on;
-		gpio = <&gpio3 RK_PC4 GPIO_ACTIVE_HIGH>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&pcie3v3_en>;
-	};
+//	pcie30_3v3: pcie30-3v3 {
+//		compatible = "regulator-fixed";
+//		regulator-name = "pcie30_3v3";
+//		enable-active-high;
+//		regulator-always-on;
+//		regulator-boot-on;
+//		gpio = <&gpio3 RK_PC4 GPIO_ACTIVE_HIGH>;
+//		pinctrl-names = "default";
+//		pinctrl-0 = <&pcie3v3_en>;
+//	};
 
 	hdmi_sound: hdmi-sound {
 		compatible = "simple-audio-card";
@@ -68,41 +68,41 @@
 	vin-supply = <&vcc12v_dcin>;
 };
 
-&gmac0 {
-	phy-mode = "rgmii";
-	clock_in_out = "output";
+//&gmac0 {
+//	phy-mode = "rgmii";
+//	clock_in_out = "output";
+//
+//	snps,reset-gpio = <&gpio0 RK_PC6 GPIO_ACTIVE_LOW>;
+//	snps,reset-active-low;
+//	/* Reset time is 20ms, 100ms for rtl8211f */
+//	snps,reset-delays-us = <0 20000 100000>;
+//
+//	assigned-clocks = <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
+//	assigned-clock-parents = <&cru SCLK_GMAC0_RGMII_SPEED>;
+//	assigned-clock-rates = <0>, <125000000>;
+//
+//	pinctrl-names = "default";
+//	pinctrl-0 = <&gmac0_miim
+//		     &gmac0_tx_bus2
+//		     &gmac0_rx_bus2
+//		     &gmac0_rgmii_clk
+//		     &gmac0_rgmii_bus>;
+//
+//	tx_delay = <0x36>;
+//	rx_delay = <0x2d>;
+//
+//	phy-handle = <&rgmii_phy0>;
+//	status = "okay";
+//};
 
-	snps,reset-gpio = <&gpio0 RK_PC6 GPIO_ACTIVE_LOW>;
-	snps,reset-active-low;
-	/* Reset time is 20ms, 100ms for rtl8211f */
-	snps,reset-delays-us = <0 20000 100000>;
-
-	assigned-clocks = <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
-	assigned-clock-parents = <&cru SCLK_GMAC0_RGMII_SPEED>;
-	assigned-clock-rates = <0>, <125000000>;
-
-	pinctrl-names = "default";
-	pinctrl-0 = <&gmac0_miim
-		     &gmac0_tx_bus2
-		     &gmac0_rx_bus2
-		     &gmac0_rgmii_clk
-		     &gmac0_rgmii_bus>;
-
-	tx_delay = <0x36>;
-	rx_delay = <0x2d>;
-
-	phy-handle = <&rgmii_phy0>;
-	status = "okay";
-};
-
-&mdio0 {
-	status = "okay";
-
-	rgmii_phy0: phy@0 {
-		compatible = "ethernet-phy-ieee802.3-c22";
-		reg = <0x0>;
-	};
-};
+//&mdio0 {
+//	status = "okay";
+//
+//	rgmii_phy0: phy@0 {
+//		compatible = "ethernet-phy-ieee802.3-c22";
+//		reg = <0x0>;
+//	};
+//};
 
 &gmac1 {
 	status = "okay";
@@ -206,7 +206,7 @@
 };
 
 &rk809_sound {
-	simple-audio-card,hp-det-gpio = <&gpio4 RK_PC4 GPIO_ACTIVE_HIGH>;
+	simple-audio-card,hp-det-gpio = <&gpio1 RK_PA4 GPIO_ACTIVE_HIGH>;
 	pinctrl-names = "default";
 	pinctrl-0 = <&hp_det>;
 	status = "okay";
@@ -220,36 +220,36 @@
 	status = "okay";
 };
 
-&pcie30phy {
-	status = "okay";
-};
+//&pcie30phy {
+//	status = "okay";
+//};
 
-&pcie3x2 {
-	reset-gpios = <&gpio2 RK_PD6 GPIO_ACTIVE_HIGH>;
-	vpcie3v3-supply = <&pcie30_3v3>;
-	pinctrl-0 = <&pcie30x2m1_pins>;
-	rockchip,bifurcation;
-	status = "okay";
-};
+//&pcie3x2 {
+//	reset-gpios = <&gpio2 RK_PD6 GPIO_ACTIVE_HIGH>;
+//	vpcie3v3-supply = <&pcie30_3v3>;
+//	pinctrl-0 = <&pcie30x2m1_pins>;
+//	rockchip,bifurcation;
+//	status = "okay";
+//};
 
-&pcie3x1 {
-	reset-gpios = <&gpio3 RK_PA1 GPIO_ACTIVE_HIGH>;
-	vpcie3v3-supply = <&pcie30_3v3>;
-	pinctrl-0 = <&pcie30x1m1_pins>;
-	rockchip,bifurcation;
-	status = "okay";
-};
+//&pcie3x1 {
+//	reset-gpios = <&gpio3 RK_PA1 GPIO_ACTIVE_HIGH>;
+//	vpcie3v3-supply = <&pcie30_3v3>;
+//	pinctrl-0 = <&pcie30x1m1_pins>;
+//	rockchip,bifurcation;
+//	status = "okay";
+//};
 
-&pcie2x1 {
-	reset-gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_HIGH>;
-	vpcie3v3-supply = <&pcie30_3v3>;
-	pinctrl-0 = <&pcie20m1_pins>;
-	status = "disabled";
-};
+//&pcie2x1 {
+//	reset-gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_HIGH>;
+//	vpcie3v3-supply = <&pcie30_3v3>;
+//	pinctrl-0 = <&pcie20m1_pins>;
+//	status = "disabled";
+//};
 
-&sata2 {
-	status = "okay";
-};
+//&sata2 {
+//	status = "okay";
+//};
 
 &soc_thermal {
 	sustainable-power = <5000>; /* milliwatts */
@@ -315,15 +315,15 @@
 		};
 	};
 
-	pcie {
-		pcie3v3_en: pcie3v3-en {
-			rockchip,pins = <3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
-		};
-	};
+//	pcie {
+//		pcie3v3_en: pcie3v3-en {
+//			rockchip,pins = <3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
+//		};
+//	};
 
 	headphone {
 		hp_det: hp-det {
-			rockchip,pins = <3 RK_PA1 RK_FUNC_GPIO &pcfg_pull_up>;
+			rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_up>;
 		};
 	};
 
